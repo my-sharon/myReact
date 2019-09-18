@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-react-jsx使用方式的对比</title>
+</head>
+<body>
+<!--
+  往容器中插入一个span标签, class为: "it", 内容为: "like"。
+  两种实现方式: a) 通过典型js方式;  b) JSX方式?
+-->
+<div id="app"></div>
+<div id="app2"></div>
+<!--引入react初始化配置文件-->
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/prop-types.js"></script>
+<script src="../js/babel.min.js"></script>
+<script>
+
+
+    /**
+     * let vDom = React.createElement("span",{className:"it"},"like");
+     * 第一个参数 需要创建的虚拟DOM标签
+     * 第二个参数 所创建的标签添加的类名
+     * 第三个参数  所创建的标签的内容
+     */
+    let vDom = React.createElement("span",{className:"it"},"like");
+    // console.log(vDom);
+    ReactDOM.render(vDom, document.getElementById('app'));
+</script>
+<script type="text/babel">
+    let myClass = "it";
+    let myContent = "今天天气很好";
+    let vDom2 = <span className={"abcd".toUpperCase()}>{myContent}</span>;
+    ReactDOM.render(vDom2, document.querySelector('#app2'));
+</script>
+</body>
+</html>

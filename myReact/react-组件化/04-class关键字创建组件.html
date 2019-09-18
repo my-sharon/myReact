@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-class关键字创建组件</title>
+</head>
+<body>
+<div id="app"></div>
+<!--引入react初始化配置文件-->
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/prop-types.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/babel">
+    class Demo extends React.Component{
+        render(){
+            return (
+                <div>
+                    <h2>姓名:{this.props.name}</h2>
+                    <p>年龄:{this.props.age}</p>
+                    <p>学科:{this.props.colleages}</p>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Demo name="sharon" age="24" colleages={[" h5 "," java "," react "]}/>,document.querySelector("#app"));
+</script>
+</body>
+</html>

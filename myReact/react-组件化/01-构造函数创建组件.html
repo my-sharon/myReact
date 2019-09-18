@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-构造函数创建组件</title>
+</head>
+<body>
+<div id="app"></div>
+<!--引入react初始化配置文件-->
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/prop-types.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/babel">
+    function Demo() {
+        return (
+            <div>
+                <h2>我是一个标题</h2>
+                <img src="../images/sharon.jpg"/>
+            </div>
+        )
+    }
+    ReactDOM.render(<Demo/>,document.querySelector("#app"));
+</script>
+</body>
+</html>

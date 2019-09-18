@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-react中state的使用</title>
+</head>
+<body>
+<div id="app"></div>
+<!--引入react初始化配置文件-->
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/prop-types.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/babel">
+    /*
+    什么是state?
+
+    React 把组件看成是一个状态机（State Machines）,
+    通过状态 (State) 去操作状态机。在开发中, 通过与用户的交互，实现不同状态，
+    然后渲染 UI，让用户界面和数据保持一致。
+
+    在React 中，只需更新组件的 state，然后根据新的 state 重新渲染用户界（不要操作 DOM）。
+     */
+    class Person extends React.Component{
+        constructor(props){
+            super(props);//子组件的参数能够在父组件中使用(也就是Person是子组件,React.component是父组件)
+            // 2. 初始化状态
+            this.state = {
+                name: '周杰伦',
+                gender: '男',
+                intro: '七里香'
+            }
+            // this.dealClick = this.dealClick.bind(this);
+        }
+        render(){
+            const {name,gender,intro} = this.state;
+            return(
+                <div>
+                    <h1>我叫：{name}, 性别：{gender}, 代表作：{intro}</h1>
+                    <button onClick={()=>this.dealClick()}>换一个</button>
+                </div>
+            )
+        }
+        dealClick(){
+            // alert("点了" + this);
+            this.setState(
+                {
+                    name: 'sharon',
+                    gender: '女',
+                    intro: 'faster'
+                }
+            )
+        }
+    }
+    ReactDOM.render(<Person/>,document.querySelector("#app"));
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-react复合组件</title>
+</head>
+<body>
+<div id="app"></div>
+<!--引入react初始化配置文件-->
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/prop-types.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/babel">
+    function Name(props) {
+        return (
+            <p>姓名:{props.name}</p>
+        )
+    }
+    function Age(props) {
+        return (
+            <p>年龄:{props.age}</p>
+        )
+    }
+    function Colleages(props) {
+        return (
+            <p>学科:{props.colleages}</p>
+        )
+    }
+    function Demo(props) {
+        return (
+            <div>
+                <Name name="sharon"></Name>
+                <Age age="24"></Age>
+                <Colleages colleages={[" h5 "," java "," react "]}></Colleages>
+                <img src="../images/sharon.jpg" width="200"/>
+            </div>
+        )
+    }
+    ReactDOM.render(<Demo/>,document.querySelector("#app"));
+</script>
+</body>
+</html>

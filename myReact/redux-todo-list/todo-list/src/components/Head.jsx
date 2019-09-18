@@ -1,0 +1,56 @@
+import React,{Component} from "react";
+import store from  "./../store";
+import {addItemAction} from "./../store/actionCreators";
+import {connect} from "react-redux";
+
+class Head extends Component{
+    constructor(props){
+        super(props);
+        // 绑定ref
+        this.myInput = React.createRef();
+    }
+    render(){
+        return(
+            <div className="todo-header">
+                <input
+                    type="text"
+                    placeholder="请输入今天的任务清单，按回车键确认"
+                    ref={this.myInput}
+                    onKeyDown={(e)=>this._handleEvent(e)}
+                />
+            </div>
+        )
+    }
+    _handleEvent(e){
+        // console.log(e.keyCode);
+        const {todos} = this.props;
+        const lastTodoId = todos.length === 0 ? 0 : todos[todos.length-1].id;
+        // 1. 判断是否是回车键
+        if(13 === e.keyCode){
+            // 2. 判断输入的内容是否为空
+            if(this.myInput.current.value === ""){
+                alert('输入的内容不能为空！');
+                return;
+            }
+            // 3. 创建todo对象返回
+            let todo = {id:lastTodoId + 1,title:this.myInput.current.value,finished: false};
+            this.props.addTodo(todo);
+            // 4. 清空内容
+            this.myInput.current.value = '';
+        }
+    }
+}
+const mapStateToProps = (state)=>{
+    return{
+        todos:state.todos
+    }
+};
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        addTodo(todo){
+            const action = addItemAction(todo);
+            dispatch(action);
+        }
+    }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(Head);

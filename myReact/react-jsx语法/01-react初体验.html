@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react初体验</title>
+</head>
+<body>
+<div id="app"></div>
+<!--引入react初始化配置文件-->
+<!--react核心文件-->
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<!--约束传参类型-->
+<script src="../js/prop-types.js"></script>
+<!--jsx-->
+<script src="../js/babel.min.js"></script>
+<script type="text/html">
+    // 1.获取页面真实的容器元素
+    let containerDiv = document.querySelector('#app');
+    // 2. jsx语法创建虚拟DOM对象
+    // virtual虚拟的,所以用v做前缀提升语义
+    let vDom = <div>hello world</div>;
+    // 3. 将虚拟DOM渲染到页面元素上去
+    ReactDOM.render(vDom, containerDiv);
+</script>
+<script type="text/babel">
+    //利用JSX创建虚拟DOM对象
+    let vDom = <div>Hello World!</div>;
+    //将虚拟DOM渲染到页面元素上去
+    /*
+    ReactDOM.render方法
+    第一个参数 : 需要添加的虚拟DOM对象
+    第二个参数 : 需要添加的容器
+     */
+    ReactDOM.render(vDom,document.querySelector("#app"));
+    /*
+    简单了解Diff算法？
+    当我们使用React在render() 函数创建了一棵React元素树，在下一个state或者props更新的时候，
+    render() 函数将会创建一棵新的React元素树。
+
+    React将对比这两棵树的不同之处，计算出如何高效的更新UI（只更新变化的地方），
+    此处所采用的算法就是diff算法。
+     */
+</script>
+</body>
+</html>

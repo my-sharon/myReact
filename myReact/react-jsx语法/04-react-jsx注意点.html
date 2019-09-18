@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-react-jsx注意点</title>
+</head>
+<body>
+<div id="app"></div>
+<!--引入react初始化配置文件-->
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/prop-types.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/html">
+    /*
+    注意点：
+    1. JSX中添加属性时，使用 className 代替 class ,  像label中的for属性，使用htmlFor代替；
+    2. JSX创建DOM的时候，所有的节点，必须有唯一的根元素进行包裹 ；
+    3. JSX语法中，标签必须成对出现，如果是单标签，则必须自闭和 ；
+    4. 在 JSX 中可以直接使用 JS代码，直接在 JSX 中通过 {} 中间写 JS代码即可；
+    5. 在 JSX 中只能使用表达式，不能出现语句；
+    6. 在 JSX 中注释语法：{/* 中间是注释的内容 */}
+    */
+</script>
+<script type="text/html">
+    //1.多层标签嵌套
+    ReactDOM.render(
+    //必须要有一个父标签包着其他子标签，否则会报错
+        <div>
+            <p>我是一个段落</p>
+            {/*一定要注意，标签必须要自闭合，也就是</>,如果没有自闭和，那么就会报错*/}
+            <img src="../images/sharon.jpg"/>
+            <input type="color"/>
+        </div>
+    ,document.querySelector("#app"));
+</script>
+<script type="text/html">
+    //2.js中的变量, 表达式要写在{}内
+    let str = "Sharon";
+    ReactDOM.render(
+        <div>
+            <span>{str}</span>
+            <p>100 + 20 * 2 /5 *3 = {100 + 20 * 2 /5 *3}</p>
+            {/*注意点：要写在大括号里面才能禁用算数表达式的运算*/}
+        </div>
+        ,document.querySelector("#app")
+    );
+</script>
+<script type="text/html">
+    // 3.内联样式通过对象方式引入
+       let myStyle = {
+        backgroundColor: 'purple',
+        color: 'yellow',
+        fontSize: 30
+        };
+       ReactDOM.render(
+            <div>
+                <h2>来点颜色</h2>
+                <p style= {myStyle}>客官:颜色来了</p>
+            </div>
+           ,document.querySelector("#app")
+       );
+</script>
+<script type="text/html">
+    //4.jsx数据遍历
+    let dataArr = [
+        {name: '周杰伦', age: 38},
+        {name: '谢霆锋', age: 40},
+        {name: '刘德华', age: 48},
+    ];
+    ReactDOM.render(
+        /*
+        在箭头函数中
+        首先不加{}，这时箭头函数指向的就是这个函数的返回值，用在只返回返回值的时候，只写一个箭头，就行
+        另一种加{}，这就是一个代码块跟之前没区别，还是要写上返回值，就是要return 东西，不然什么也得不到
+        这就是两者的区别
+         */
+        <ul>
+            {
+                dataArr.map((data,index)=> {
+                    return <li key={index}>{index + 1} --- 姓名： {data.name} --- 年龄：{data.age}岁</li>;
+                    }
+                )
+            }
+        </ul>
+        ,document.querySelector("#app")
+    )
+</script>
+<script type="text/babel">
+    // 1. 数据
+    /**/
+    const dataArr = [
+    {name: '周杰伦', age: 38},
+    {name: '谢霆锋', age: 40},
+    {name: '刘德华', age: 48},
+    ];
+
+    // 2. 创建虚拟DOM
+    let vDOM = (
+        <ul>
+            {
+                dataArr.map((data, index) =>
+                    <li key={index}>{index + 1} --- 姓名： {data.name} --- 年龄：{data.age}岁</li>
+                )
+            }
+        </ul>
+    );
+
+    ReactDOM.render(
+    vDOM
+    , document.getElementById('app'));
+</script>
+</body>
+</html>

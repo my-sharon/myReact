@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-react中定义组件-传递参数</title>
+</head>
+<body>
+<div id="app"></div>
+<!--引入react初始化配置文件-->
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/prop-types.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/babel">
+    /*
+    使用构造函数来创建组件时，如果要接收外界传递的数据，
+    需要在构造函数的参数列表中使用props来接收；
+
+    必须要向外return一个合法的JSX创建的虚拟DOM；
+     */
+    function Demo(props) {
+        return (
+            <div>
+                <h2>姓名:{props.name}</h2>
+                <p>年龄:{props.age}</p>
+                <p>学科:{props.colleages}</p>
+                <img src="../images/sharon.jpg" width="200"/>
+            </div>
+        )
+    }
+    ReactDOM.render(<Demo name="sharon" age="24" colleages={[" h5 "," java "," react "]}/>,document.querySelector("#app"));
+</script>
+</body>
+</html>
